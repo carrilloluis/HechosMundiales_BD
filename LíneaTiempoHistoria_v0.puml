@@ -1,0 +1,47 @@
+@startuml lth1
+	skin rose
+	hide circle
+	hide empty members
+
+	entity EventoHistórico {
+		*id : INTEGER
+		descripción : TEXT 
+		url : TEXT
+	}
+
+	entity DataciónEvento {
+		*id : INTEGER
+		id_evento : INTEGER
+		año : CHAR
+		mes : CHAR
+		día : CHAR
+		es_fecha_inicio : BOOLEAN
+		es_anterior_era : BOOLEAN
+	}
+
+	entity GeorreferenciaEvento {
+		*id : INTEGER
+		id_evento : INTEGER
+		continente : INTEGER
+		país : VARCHAR
+		región : VARCHAR
+		latitud : NUMERIC
+		longitud : NUMERIC
+	}
+
+	entity GeorreferenciaActual {
+		*id : INTEGER
+		id_evento : INTEGER
+		país : CHAR
+	}
+
+	entity Participante {
+		*id : INTEGER
+		id_evento : INTEGER
+		denominación : VARCHAR
+	}
+	DataciónEvento }|-d-|| EventoHistórico  
+	EventoHistórico ||-r-|{ GeorreferenciaEvento
+	EventoHistórico ||-l-|{ GeorreferenciaActual
+	EventoHistórico ||-d-o{ Participante
+@enduml
